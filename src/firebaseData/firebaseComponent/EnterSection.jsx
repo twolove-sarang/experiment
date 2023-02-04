@@ -1,19 +1,30 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { updateContact } from "../firebaseAuth/AuteFirebase";
-import { v4 as uuid } from "uuid";
+import { useUserContext } from "../firebaseUserContext/userContext";
 
 export default function EnterSection() {
   const [contact, setContact] = useState({});
 
+  const queryClient = useQueryClient();
+  const addContact = useMutation({
+    mutationFn: ({ contact }) => updateContact(contact),
+    onSuccess: () => queryClient.invalidateQueries(["contact"]),
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const userId = uuid();
     setContact((contact) => ({ ...contact, [name]: value }));
   };
 
+  const { user } = useUserContext();
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateContact(contact);
+    addContact.mutate({ contact });
+    if (user) {
+      setContact({});
+    } else {
+    }
   };
 
   return (
@@ -30,6 +41,7 @@ export default function EnterSection() {
                 placeholder="성 / First"
                 className="p-2 mr-2 my-2 outline-none drop-shadow-md rounded-lg"
                 onChange={handleChange}
+                required
               />
               <input
                 type="text"
@@ -38,6 +50,7 @@ export default function EnterSection() {
                 value={contact.last ?? ""}
                 placeholder="이름 / Last"
                 className="p-2 mr-2 my-2 outline-none drop-shadow-md rounded-lg"
+                required
               />
             </div>
           </label>
@@ -61,6 +74,7 @@ export default function EnterSection() {
               value={contact.email ?? ""}
               placeholder="Email@naver.com"
               className="p-2 mr-2 my-2 outline-none drop-shadow-md rounded-lg basis-9/12"
+              required
             />
           </label>
           <label className="flex">
@@ -69,7 +83,8 @@ export default function EnterSection() {
               name="memo"
               onChange={handleChange}
               value={contact.memo ?? ""}
-              rows={6}
+              placeholder="별명이 있나요?"
+              rows={5}
               className="p-2 mr-2 my-2 outline-none drop-shadow-md rounded-lg basis-9/12 h-full"
             />
           </label>
@@ -77,7 +92,10 @@ export default function EnterSection() {
             <button className="font-bold text-blue border px-2 py-1 m-2 rounded-lg hover:bg-blue hover:text-white w-32">
               저장
             </button>
-            <button className="font-bold border px-2 py-1 m-2 rounded-lg hover:bg-red hover:text-white w-32">
+            <button
+              onClick={() => setContact({})}
+              className="font-bold border px-2 py-1 m-2 rounded-lg hover:bg-red hover:text-white w-32"
+            >
               취소
             </button>
           </div>

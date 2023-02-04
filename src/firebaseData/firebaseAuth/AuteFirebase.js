@@ -1,3 +1,4 @@
+import { QueryClient } from "@tanstack/react-query";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -6,7 +7,8 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { get, getDatabase, ref, set } from "firebase/database";
+import { get, getDatabase, ref, remove, set } from "firebase/database";
+import { v4 as uuid } from "uuid";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -24,24 +26,41 @@ export async function login() {
   return signInWithPopup(auth, provider) //
     .then((result) => {
       const user = result.user;
+      console.log(user);
       return user;
     });
 }
 
 export async function logout() {
-  return signOut(auth).then(() => {});
+  return signOut(auth);
 }
 
 export async function loginObserver(callback) {
   return onAuthStateChanged(auth, callback);
 }
+export async function updateContact(contact) {
+  const userId = uuid();
+  const { first, last, number, email, memo } = contact;
+  return set(ref(database, `user/${userId}`), {
+    first: first,
+    last: last,
+    number: number,
+    email: email,
+    memo: memo,
+    id: userId,
+  });
+}
 
-export async function updateContact(userId) {
-  return set(ref(database, `user/${userId}`)) //
+export async function viewContact() {
+  return get(ref(database, `user`)) //
     .then((snapshot) => {
       if (snapshot.exists()) {
-        const contact = snapshot.val();
-        return contact;
+        return Object.values(snapshot.val());
       }
+      return [];
     });
+}
+
+export async function deleteContact(userId) {
+  return remove(ref(database, `user/${userId}`));
 }
