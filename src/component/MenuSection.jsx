@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const menu = ["FireBase", "CSS"];
 export default function MenuSection() {
@@ -8,16 +8,22 @@ export default function MenuSection() {
     navigate(`/menu/${e.target.textContent}`);
   };
   return (
-    <div className="">
+    <>
+      <input
+        type="text"
+        placeholder="searching..."
+        className="p-2 ml-4 outline-none w-64 drop-shadow-md rounded-lg mb-10"
+      />
       {menu &&
-        menu.map((el) => (
+        menu.map((el, index) => (
           <div
+            key={index}
             onClick={navigatePage}
             className="p-2 ml-4 font-normal hover:bg-blue hover:text-white transition-colors ease-out rounded-md"
           >
             {el}
           </div>
         ))}
-    </div>
+    </>
   );
 }

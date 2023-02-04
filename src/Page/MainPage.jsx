@@ -15,24 +15,28 @@ const personalPages = {
   },
 };
 const values = Object.values(personalPages);
-console.log("value", values);
+
 export default function MainPage() {
   return (
     <div>
+      <div className="text-2xl font-bold">프론트엔드 연구, 기록일지</div>
+      <div className="text-sm mt-2">지독한 기록병이 있습니다 ☺️</div>
+      <br />
       <div>Welcome to Sarang's Laboratory-"Experiment"</div>
-      <div>Press the menu button and enjoy this project.</div>
+      <div>⬅️ Press the menu button and enjoy this project.</div>
       <br />
       <div>
         <div className="font-bold">Please come over to my pages 🤟</div>
-        <div className="border rounded-t-xl rounded-b-xl overflow-hidden mt-10">
-          {values.map((el) => (
+        <div className="border rounded-t-xl rounded-b-xl overflow-hidden mt-10 hover:cursor-pointer w-80">
+          {values.map((el, index) => (
             <div
-              className="flex items-center py-4 border-b
-            hover:bg-blue transition ease-out duration-200"
+              key={index}
+              className="flex items-center py-4 border-b hover:bg-opacity-20 hover:bg-blue
+               transition ease-out duration-200"
             >
               <img
                 src={el.img}
-                alt="image"
+                alt="logo"
                 className="w-6 rounded-full m-2 mx-10"
               />
               <div className="text-md font-normal">{el.name}</div>

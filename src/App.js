@@ -12,7 +12,7 @@ function App() {
         <div className="w-80 h-screen p-2 ">
           <MenuSection />
         </div>
-        <div className="p-4">
+        <div className="p-4 ml-4">
           <Outlet />
         </div>
       </div>

@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <Link to="/">
       <div
-        className="w-72 text-6xl font-extrabold text-center p-16
+        className="w-72 text-6xl font-extrabold text-center p-16 inline-block
         transition ease-in-out duration-300
         hover:scale-125 hover:-translate-y-1 hover:cursor-pointer"
       >
