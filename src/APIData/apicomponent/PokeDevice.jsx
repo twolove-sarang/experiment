@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { pokeName } from "../pokeApi/pokeapi";
 
@@ -8,17 +8,6 @@ export default function PokeDevice({
   nextPoke,
   monster,
 }) {
-  const [pokeState, setPokeState] = useState();
-  const queryClient = useQueryClient();
-  const pokeInformation = useMutation({
-    mutationFn: ({ catchPoke }) => pokeName(catchPoke),
-    onSuccess: () => queryClient.invalidateQueries(["monster"]),
-  });
-
-  useEffect(() => {
-    setPokeState(pokeInformation.mutate({ catchPoke }));
-  }, []);
-
   return (
     <section className="flex items-end">
       {/* 왼쪽 디바이스 */}
