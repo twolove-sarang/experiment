@@ -14,6 +14,10 @@ module.exports = {
         yellow: "#eeb004",
         red: "#f44250",
         blue: "#3992ff",
+        device: "#D7200F",
+      },
+      height: {
+        fheight: "28rem",
       },
     },
   },

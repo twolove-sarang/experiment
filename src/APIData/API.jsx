@@ -8,7 +8,7 @@ export default function API() {
         API
       </p>
       <div className="mt-2">
-        ✅ "너로 정했다!" 포켓몬 API를 활용해포켓몬 찾기
+        ✅ "너로 정했다!" 포켓몬 API를 활용해포켓몬 잡기
       </div>
       <Weather />
     </section>
