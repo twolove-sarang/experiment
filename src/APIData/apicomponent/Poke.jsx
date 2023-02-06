@@ -1,13 +1,43 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import { pokeName } from "../pokeApi/pokeapi";
 import PokeDevice from "./PokeDevice";
 
 export default function Poke() {
   const randomNumber = Math.floor(Math.random() * 1000) + 1;
   const [random, setRandom] = useState(randomNumber);
   const [catchPoke, setCatchPoke] = useState();
-  console.log("catchpoke", catchPoke);
+
+  const { data: monster } = useQuery(
+    {
+      queryKey: ["monster"],
+      queryFn: () => pokeName(catchPoke),
+    }
+    // { staleTime: 1000 * 5 * 10 }
+  );
+
+  const queryClient = useQueryClient();
+  const pokeInformation = useMutation({
+    mutationFn: ({ catchPoke }) => pokeName(catchPoke),
+    onSuccess: () => queryClient.invalidateQueries(["monster"]),
+  });
+
+  const previousPoke = () => {
+    if (catchPoke < 1) {
+      return setCatchPoke(1007);
+    } else {
+      return setCatchPoke((prev) => prev - 1);
+    }
+  };
+
+  const nextPoke = () => {
+    if (catchPoke > 1008) {
+      return setCatchPoke(1);
+    } else {
+      return setCatchPoke((prev) => prev + 1);
+    }
+  };
+
   const handleCatch = () => {
     setCatchPoke(random);
   };
@@ -17,27 +47,9 @@ export default function Poke() {
     setCatchPoke(null);
   };
 
-  const pokemon = async () => {
-    return axios
-      .get("https://pokeapi.co/api/v2/ability")
-      .then((res) => res.data);
-  };
-
   useEffect(() => {
     setCatchPoke(null);
   }, []);
-
-  const {
-    isLoading,
-    error,
-    data: monster,
-  } = useQuery(
-    { queryKey: ["monster"], queryFn: () => pokemon() },
-    { staleTime: 1000 }
-  );
-
-  if (isLoading) return <p>loading...</p>;
-  if (error) return <p>에러야 다시해~</p>;
 
   return (
     <div className="my-4">
@@ -53,6 +65,7 @@ export default function Poke() {
           </div>
           <img
             id="silhouette"
+            alt="img"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
               random + 1
             }.png`}
@@ -73,7 +86,12 @@ export default function Poke() {
           </div>
         </div>
 
-        <PokeDevice catchPoke={catchPoke} />
+        <PokeDevice
+          catchPoke={catchPoke}
+          previousPoke={previousPoke}
+          nextPoke={nextPoke}
+          monster={monster}
+        />
       </div>
     </div>
   );

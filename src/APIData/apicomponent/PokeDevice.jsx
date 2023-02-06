@@ -1,27 +1,28 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import { pokeName } from "../pokeApi/pokeapi";
 
-export default function PokeDevice({ catchPoke }) {
-  const [pokeNumber, setPokeNumber] = useState();
+export default function PokeDevice({
+  catchPoke,
+  previousPoke,
+  nextPoke,
+  monster,
+}) {
+  const [pokeState, setPokeState] = useState();
+  const queryClient = useQueryClient();
+  const pokeInformation = useMutation({
+    mutationFn: ({ catchPoke }) => pokeName(catchPoke),
+    onSuccess: () => queryClient.invalidateQueries(["monster"]),
+  });
 
-  const previousPoke = () => {
-    if (pokeNumber < 1) {
-      return setPokeNumber(1008);
-    } else {
-      setPokeNumber((catchPoke) => catchPoke - 1);
-    }
-  };
-  const nextPoke = () => {
-    if (pokeNumber > 1008) {
-      return setPokeNumber(1);
-    } else {
-      setPokeNumber((catchPoke) => catchPoke + 1);
-    }
-  };
+  useEffect(() => {
+    setPokeState(pokeInformation.mutate({ catchPoke }));
+  }, []);
 
   return (
     <section className="flex items-end">
       {/* 왼쪽 디바이스 */}
-      <div className="w-72 h-fheight rounded-md bg-device relative flex flex-col items-center">
+      <div className="w-72 h-fheight rounded-md rounded-br-none bg-device relative flex flex-col items-center">
         {/* 상단 버튼 */}
         <>
           <div className="w-16 h-16 rounded-full bg-slate-200 absolute top-4 left-6"></div>
@@ -38,7 +39,10 @@ export default function PokeDevice({ catchPoke }) {
             {
               <img
                 className="mx-auto w-40"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeNumber}.png`}
+                alt="img"
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                  catchPoke + 1
+                }.png`}
               />
             }
           </div>
@@ -52,8 +56,11 @@ export default function PokeDevice({ catchPoke }) {
               <div className="w-8 h-2 rounded-full bg-blue"></div>
             </div>
             <div className="w-20 h-12 rounded-sm bg-green-400 absolute top-6 flex items-center">
-              <div className="w-20 text-center font-bold text-3xl">
-                {pokeNumber}
+              <div
+                className="w-20 text-center font-bold text-xl bg-green-400 outline-none"
+                type="text"
+              >
+                no.{catchPoke + 1}
               </div>
             </div>
           </div>
@@ -73,17 +80,19 @@ export default function PokeDevice({ catchPoke }) {
       </div>
       {/* 오른쪽 디바이스 */}
 
-      <div className="w-72 h-96 rounded-md bg-device relative flex flex-col items-center">
+      <div className="w-72 h-96 rounded-md rounded-bl-none rounded-tl-none bg-device relative flex flex-col items-center">
         {/* 이름 */}
         <div className="w-52 h-16 rounded-md bg-black absolute top-16">
-          <div className="text-white text-center">피카츄</div>
+          <div className="text-white text-center mt-2 font-bold uppercase">
+            {monster && monster.species.name}
+          </div>
           <div className="text-white text-center">(이)가 잡혔다!</div>
         </div>
-        <div className="w-52 h-16 rounded-md bg-blue absolute top-36"></div>
-
-        <div className="flex justify-between w-52 absolute top-36">
-          <div className="w-1 h-16 rounded-full bg-blue"></div>
-          <div className="w-1 h-16 rounded-full bg-blue"></div>
+        <div className="w-52 h-16 rounded-md bg-blue absolute top-36 flex font-bold justify-between items-center">
+          {monster &&
+            monster.types.map((el) => (
+              <div className="mx-auto uppercase">{el.type.name}</div>
+            ))}
         </div>
 
         {/* 버튼 */}
