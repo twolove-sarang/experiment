@@ -1,37 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { pokeName } from "../pokeApi/pokeapi";
 import PokeDevice from "./PokeDevice";
 
 export default function Poke() {
   const randomNumber = Math.floor(Math.random() * 1000) + 1;
   const [random, setRandom] = useState(randomNumber);
   const [catchPoke, setCatchPoke] = useState();
-
-  const queryClient = useQueryClient();
-  const pokeInformation = useMutation({
-    mutationFn: ({ catchPoke }) => pokeName(catchPoke),
-    onSuccess: () => queryClient.invalidateQueries(["monster"]),
-  });
-
-  useEffect(() => {
-    setCatchPoke(null);
-  }, []);
-
-  const {
-    isLoading,
-    error,
-    data: monster,
-  } = useQuery(
-    {
-      queryKey: ["monster"],
-      queryFn: () => pokeName(catchPoke),
-    },
-    { staleTime: 1000 * 5 * 10 }
-  );
-
-  // if (isLoading) return <p>로딩중...!</p>;
-  // if (error) return <p>에러에러!</p>;
 
   const previousPoke = () => {
     if (catchPoke < 1) {
@@ -51,13 +24,17 @@ export default function Poke() {
 
   const handleCatch = () => {
     setCatchPoke(random);
-    pokeInformation.mutate({ catchPoke });
+    // pokeInformation.mutate({ catchPoke });
   };
 
   const handleOther = () => {
     setRandom(randomNumber);
     setCatchPoke(null);
   };
+
+  useEffect(() => {
+    setCatchPoke(null);
+  }, []);
 
   return (
     <div className="my-4">
@@ -98,7 +75,6 @@ export default function Poke() {
           catchPoke={catchPoke}
           previousPoke={previousPoke}
           nextPoke={nextPoke}
-          monster={monster}
         />
       </div>
     </div>

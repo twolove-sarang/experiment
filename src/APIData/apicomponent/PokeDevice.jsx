@@ -1,13 +1,19 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { pokeName } from "../pokeApi/pokeapi";
+import axios from "axios";
 
-export default function PokeDevice({
-  catchPoke,
-  previousPoke,
-  nextPoke,
-  monster,
-}) {
+export default function PokeDevice({ catchPoke, previousPoke, nextPoke }) {
+  function pokeName() {
+    return axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${catchPoke}`)
+      .then((res) => res.data);
+  }
+
+  useEffect(() => {
+    pokeName();
+  }, []);
+
   return (
     <section className="flex items-end">
       {/* 왼쪽 디바이스 */}
@@ -73,15 +79,15 @@ export default function PokeDevice({
         {/* 이름 */}
         <div className="w-52 h-16 rounded-md bg-black absolute top-16">
           <div className="text-white text-center mt-2 font-bold uppercase">
-            {monster && monster.species.name}
+            {/* {monster && monster.species.name} */}
           </div>
           <div className="text-white text-center">(이)가 잡혔다!</div>
         </div>
         <div className="w-52 h-16 rounded-md bg-blue absolute top-36 flex font-bold justify-between items-center">
-          {monster &&
+          {/* {monster &&
             monster.types.map((el) => (
               <div className="mx-auto uppercase">{el.type.name}</div>
-            ))}
+            ))} */}
         </div>
 
         {/* 버튼 */}
