@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function PokeDevice({ catchPoke }) {
-  console.log("random", catchPoke);
+  const [pokeNumber, setPokeNumber] = useState();
+
+  const previousPoke = () => {
+    if (pokeNumber < 1) {
+      return setPokeNumber(1008);
+    } else {
+      setPokeNumber((catchPoke) => catchPoke - 1);
+    }
+  };
+  const nextPoke = () => {
+    if (pokeNumber > 1008) {
+      return setPokeNumber(1);
+    } else {
+      setPokeNumber((catchPoke) => catchPoke + 1);
+    }
+  };
+
   return (
     <section className="flex items-end">
       {/* 왼쪽 디바이스 */}
@@ -19,22 +35,12 @@ export default function PokeDevice({ catchPoke }) {
           <div className="w-2 h-2 rounded-full absolute bg-black"></div>
           <div className="w-56 h-44 rounded-md rounded-bl-3xl bg-slate-200 absolute"></div>
           <div className="w-40 h-28 rounded-md bg-black absolute flex items-center">
-            {catchPoke && (
+            {
               <img
                 className="mx-auto w-40"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                  catchPoke + 1
-                }.png`}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeNumber}.png`}
               />
-            )}
-            {!catchPoke && (
-              <img
-                className="mx-auto w-40"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                  catchPoke + 1
-                }.png`}
-              />
-            )}
+            }
           </div>
         </div>
         {/* 하단 버튼 */}
@@ -47,7 +53,7 @@ export default function PokeDevice({ catchPoke }) {
             </div>
             <div className="w-20 h-12 rounded-sm bg-green-400 absolute top-6 flex items-center">
               <div className="w-20 text-center font-bold text-3xl">
-                {catchPoke + 1}
+                {pokeNumber}
               </div>
             </div>
           </div>
@@ -94,8 +100,18 @@ export default function PokeDevice({ catchPoke }) {
 
         {/* 하단버튼 */}
         <div className="flex absolute top-80 justify-between gap-4">
-          <div className="w-24 h-8 rounded-md bg-black top-80"></div>
-          <div className="w-24 h-8 rounded-md bg-black top-80"></div>
+          <button
+            onClick={previousPoke}
+            className="w-24 h-8 rounded-md bg-black top-80"
+          >
+            <p className="text-white text-2xl">⬅️</p>
+          </button>
+          <button
+            onClick={nextPoke}
+            className="w-24 h-8 rounded-md bg-black top-80"
+          >
+            <p className="text-white text-2xl">➡️</p>
+          </button>
         </div>
       </div>
     </section>

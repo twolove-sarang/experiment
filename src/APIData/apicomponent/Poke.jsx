@@ -7,13 +7,14 @@ export default function Poke() {
   const randomNumber = Math.floor(Math.random() * 1000) + 1;
   const [random, setRandom] = useState(randomNumber);
   const [catchPoke, setCatchPoke] = useState();
-  const handleClick = () => {
+  console.log("catchpoke", catchPoke);
+  const handleCatch = () => {
     setCatchPoke(random);
   };
 
   const handleOther = () => {
     setRandom(randomNumber);
-    setCatchPoke(24);
+    setCatchPoke(null);
   };
 
   const pokemon = async () => {
@@ -21,6 +22,10 @@ export default function Poke() {
       .get("https://pokeapi.co/api/v2/ability")
       .then((res) => res.data);
   };
+
+  useEffect(() => {
+    setCatchPoke(null);
+  }, []);
 
   const {
     isLoading,
@@ -55,7 +60,7 @@ export default function Poke() {
           <div className="flex gap-2">
             <button
               className="w-32 h-16 bg-blue text-white font-bold rounded-lg hover:bg-yellow hover:text-black"
-              onClick={handleClick}
+              onClick={handleCatch}
             >
               CATCH!
             </button>
