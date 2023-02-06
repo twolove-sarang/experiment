@@ -9,6 +9,7 @@ import ErrorPage from "./Page/ErrorPage";
 import MainPage from "./Page/MainPage";
 import Firebase from "./firebaseData/Firebase";
 import CSS from "./CSSData/CSS";
+import API from "./APIData/API";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -18,8 +19,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <MainPage /> },
-      { path: "/menu/FireBase", element: <Firebase /> },
-      { path: "/menu/CSS", element: <CSS /> },
+      { path: "/menu/firebase", element: <Firebase /> },
+      { path: "/menu/css", element: <CSS /> },
+      { path: "/menu/api", element: <API /> },
     ],
   },
 ]);
