@@ -1,21 +1,43 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
-import { pokeName } from "../pokeApi/pokeapi";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import axios from "axios";
+import React, { useState } from "react";
 
 export default function PokeDevice({ catchPoke, previousPoke, nextPoke }) {
-  function pokeName() {
+  const [previous, setPrevious] = useState(catchPoke);
+  console.log("previous", previous);
+
+  async function pokeName(pokeName) {
     return axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${catchPoke}`)
+      .get(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
       .then((res) => res.data);
   }
+  const { data: monster } = useQuery(["monster"], () => pokeName(previous), {
+    staleTime: 1000 * 5 * 10,
+  });
 
-  useEffect(() => {
-    pokeName();
-  }, []);
+  const queryClient = useQueryClient();
+  const pokeMutation = useMutation({
+    mutationFn: ({ catchPoke }) => pokeName(catchPoke),
+    onSuccess: () => queryClient.invalidateQueries(["monster"]),
+  });
+
+  console.log(monster);
+
+  const previousButton = () => {
+    setPrevious((prev) => prev - 1);
+    pokeMutation.mutate({ previous });
+  };
 
   return (
     <section className="flex items-end">
+      <button onClick={() => previousButton(catchPoke)}>asdf</button>
+      <div>{monster && monster.name}</div>
+
       {/* 왼쪽 디바이스 */}
       <div className="w-72 h-fheight rounded-md rounded-br-none bg-device relative flex flex-col items-center">
         {/* 상단 버튼 */}
@@ -54,6 +76,7 @@ export default function PokeDevice({ catchPoke, previousPoke, nextPoke }) {
               <div
                 className="w-20 text-center font-bold text-xl bg-green-400 outline-none"
                 type="text"
+                id="font_galmuri"
               >
                 no.{catchPoke + 1}
               </div>
@@ -81,12 +104,16 @@ export default function PokeDevice({ catchPoke, previousPoke, nextPoke }) {
           <div className="text-white text-center mt-2 font-bold uppercase">
             {/* {monster && monster.species.name} */}
           </div>
-          <div className="text-white text-center">(이)가 잡혔다!</div>
+          <div className="text-white text-center" id="font_galmuri">
+            (이)가 잡혔다!
+          </div>
         </div>
         <div className="w-52 h-16 rounded-md bg-blue absolute top-36 flex font-bold justify-between items-center">
           {/* {monster &&
             monster.types.map((el) => (
-              <div className="mx-auto uppercase">{el.type.name}</div>
+              <div className="mx-auto uppercase " id="font_galmuri">
+                {el.type.name}
+              </div>
             ))} */}
         </div>
 
