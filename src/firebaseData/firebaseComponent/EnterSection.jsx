@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { updateContact } from "../firebaseAuth/AuteFirebase";
-import { useUserContext } from "../firebaseUserContext/userContext";
 
 export default function EnterSection() {
   const [contact, setContact] = useState({});
