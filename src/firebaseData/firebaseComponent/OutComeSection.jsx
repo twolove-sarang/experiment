@@ -23,7 +23,6 @@ export default function OutComeSection() {
     <div className="bg-grey w-96 p-4 rounded-3xl h-80 overflow-scroll">
       <div className="font-extrabold text-xl my-2 mx-4">Contact</div>
       {user &&
-        contact &&
         contact.map((contact) => {
           return <ContactList contact={contact} />;
         })}
