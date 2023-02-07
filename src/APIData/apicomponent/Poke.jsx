@@ -56,7 +56,7 @@ export default function Poke() {
     <div className="my-4">
       <div className="my-4 flex items-center gap-2">
         <div className="text-2xl transform-cpu">🧑‍🎤</div>
-        {pokeHistory.length == 0 ? (
+        {pokeHistory.length === 0 ? (
           <div className="text-lg">: 포켓몬 마스터가 될꺼야</div>
         ) : (
           <>
