@@ -13,6 +13,7 @@ export default function OutComeSection() {
     { staleTime: 1000 * 5 * 10 }
   );
 
+  console.log(contact);
   const contactValues = () => {
     if (contact == null) {
       return {};
@@ -29,8 +30,8 @@ export default function OutComeSection() {
       <div className="font-extrabold text-xl my-2 mx-4">Contact</div>
       {user &&
         contact &&
-        contact.map((contact, index) => {
-          <ContactList contact={contact} key={index} />;
+        contactValue.map((contact, id) => {
+          return <ContactList contact={contact} key={id} />;
         })}
 
       {contactValue.length === 0 && (
