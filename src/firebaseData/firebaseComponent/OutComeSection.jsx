@@ -13,19 +13,30 @@ export default function OutComeSection() {
     { staleTime: 1000 * 5 * 10 }
   );
 
+  const contactValues = () => {
+    if (contact == null) {
+      return {};
+    } else {
+      return Object.values(contact);
+    }
+  };
+
+  const contactValue = contactValues();
   const { user } = useUserContext();
 
   return (
     <div className="bg-grey w-96 p-4 rounded-3xl h-80 overflow-scroll">
       <div className="font-extrabold text-xl my-2 mx-4">Contact</div>
       {user &&
-        contact.map((contact) => {
-          return <ContactList contact={contact} />;
+        contact &&
+        contact.map((contact, index) => {
+          return <ContactList contact={contact} key={index} />;
         })}
 
-      {user && !contact.length && (
+      {user && contactValue.length === 0 && (
         <p className="ml-4">⬅️ 정보를 입력해 주세요</p>
       )}
+
       {!user && <p className="ml-4">로그인이 필요합니다 🤩</p>}
     </div>
   );
