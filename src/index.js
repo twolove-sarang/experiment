@@ -8,8 +8,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./Page/ErrorPage";
 import MainPage from "./Page/MainPage";
 import Firebase from "./firebaseData/Firebase";
-import CSS from "./CSSData/CSS";
-import API from "./APIData/API";
+import Css from "./cssdata/Css";
+import Api from "./APIData/Api";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <MainPage /> },
       { path: "/menu/firebase", element: <Firebase /> },
-      { path: "/menu/css", element: <CSS /> },
-      { path: "/menu/api", element: <API /> },
+      { path: "/menu/css", element: <Css /> },
+      { path: "/menu/api", element: <Api /> },
     ],
   },
 ]);

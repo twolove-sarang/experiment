@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const menu = ["FireBase", "API", "CSS"];
+const menu = ["firebase", "api", "css"];
 export default function MenuSection() {
   const navigate = useNavigate();
   const navigatePage = (e) => {
