@@ -9,12 +9,18 @@ export default function OutComeSection() {
     isLoading,
     error,
     data: contact,
-  } = useQuery({
-    queryKey: ["contact"],
-    queryFn: viewContact,
-  });
+  } = useQuery(
+    {
+      queryKey: ["contact"],
+      queryFn: viewContact,
+    },
+    { staleTime: 1000 * 5 * 10 }
+  );
 
   const { user } = useUserContext();
+
+  if (isLoading) return <p>loading...</p>;
+  if (error) return <p>error...</p>;
 
   return (
     <div className="bg-grey w-96 p-4 rounded-3xl h-80 overflow-scroll">
