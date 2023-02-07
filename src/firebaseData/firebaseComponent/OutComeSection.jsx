@@ -13,7 +13,6 @@ export default function OutComeSection() {
     { staleTime: 1000 * 5 * 10 }
   );
 
-  console.log(contact);
   const contactValues = () => {
     if (contact == null) {
       return {};
