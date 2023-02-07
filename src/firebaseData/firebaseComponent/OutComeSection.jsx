@@ -30,10 +30,10 @@ export default function OutComeSection() {
       {user &&
         contact &&
         contact.map((contact, index) => {
-          return <ContactList contact={contact} key={index} />;
+          <ContactList contact={contact} key={index} />;
         })}
 
-      {user && contactValue.length === 0 && (
+      {contactValue.length === 0 && (
         <p className="ml-4">⬅️ 정보를 입력해 주세요</p>
       )}
 

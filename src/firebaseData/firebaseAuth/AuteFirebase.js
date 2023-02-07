@@ -36,6 +36,7 @@ export async function logout() {
 export async function loginObserver(callback) {
   return onAuthStateChanged(auth, callback);
 }
+
 export async function updateContact(contact) {
   const userId = uuid();
   const { first, last, number, email, memo } = contact;
