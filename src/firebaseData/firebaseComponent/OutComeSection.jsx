@@ -5,11 +5,7 @@ import { useUserContext } from "../firebaseUserContext/userContext";
 import ContactList from "./ContactList";
 
 export default function OutComeSection() {
-  const {
-    isLoading,
-    error,
-    data: contact,
-  } = useQuery(
+  const { data: contact } = useQuery(
     {
       queryKey: ["contact"],
       queryFn: viewContact,
@@ -18,9 +14,6 @@ export default function OutComeSection() {
   );
 
   const { user } = useUserContext();
-
-  if (isLoading) return <p>loading...</p>;
-  if (error) return <p>error...</p>;
 
   return (
     <div className="bg-grey w-96 p-4 rounded-3xl h-80 overflow-scroll">
