@@ -9,7 +9,7 @@ import ErrorPage from "./Page/ErrorPage";
 import MainPage from "./Page/MainPage";
 import Firebase from "./firebaseData/Firebase";
 import Design from "./design/Design";
-import Api from "./APIData/Api";
+import Api from "./apisection/Api";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
