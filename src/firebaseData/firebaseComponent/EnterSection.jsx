@@ -21,10 +21,6 @@ export default function EnterSection() {
   const handleSubmit = (e) => {
     e.preventDefault();
     addContact.mutate({ contact });
-    if (user) {
-      setContact({});
-    } else {
-    }
   };
 
   return (
