@@ -17,7 +17,6 @@ export default function EnterSection() {
     setContact((contact) => ({ ...contact, [name]: value }));
   };
 
-  const { user } = useUserContext();
   const handleSubmit = (e) => {
     e.preventDefault();
     addContact.mutate({ contact });
