@@ -5,9 +5,13 @@ export default function Navbar() {
   return (
     <Link to="/">
       <div
-        className="w-72 text-6xl font-extrabold text-center p-16 inline-block
+        className="w-full mx-auto text-2xl font-extrabold m-6 text-center
+        sm:text-3xl sm:text-center
+        md:text-4xl md:text-left md:ml-12 md:mb-10
+        lg:text-5xl lg:ml-16 lg:my-20
+        xl:text-6xl xl:my-24
         transition ease-in-out duration-300
-        hover:scale-125 hover:-translate-y-1 hover:cursor-pointer"
+        hover:scale-105  hover:cursor-pointer"
       >
         Experiment
       </div>

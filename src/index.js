@@ -19,6 +19,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <MainPage /> },
+      { path: "/main", element: <MainPage /> },
       { path: "/menu/firebase", element: <Firebase /> },
       { path: "/menu/design", element: <Design /> },
       { path: "/menu/api", element: <Api /> },
