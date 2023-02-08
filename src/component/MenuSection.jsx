@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { FiChevronRight } from "react-icons/fi";
-
 const menu = ["firebase", "api", "design"];
 export default function MenuSection() {
   const navigate = useNavigate();
