@@ -86,7 +86,7 @@ export default function MainPage() {
           </div>
         </section>
 
-        <section>
+        <section className="mb-20">
           <p className="text-lg font-bold mt-10">Programing Skill</p>
           <p className="text-sm">Crazy about REACT 🙃</p>
           <div className="flex items-center justify-center mt-10">
@@ -98,9 +98,9 @@ export default function MainPage() {
               <div className="my-4 font-semibold">Node JS</div>
             </div>
             <div className="ml-4 -mt-5">
-              <div className="w-64 h-4 rounded-lg bg-blue my-6"></div>
-              <div className="w-80 h-4 rounded-lg bg-blue my-6"></div>
-              <div className="w-80 h-4 rounded-lg bg-blue my-6"></div>
+              <div className="w-52 md:w-64 h-4 rounded-lg bg-blue my-6"></div>
+              <div className="w-64 md:w-80 h-4 rounded-lg bg-blue my-6"></div>
+              <div className="w-64 md:w-80 h-4 rounded-lg bg-blue my-6"></div>
               <div className="w-24 h-4 rounded-lg bg-blue my-6"></div>
               <div className="flex items-center justify-between">
                 <div className="w-8 h-4 rounded-lg bg-blue"></div>

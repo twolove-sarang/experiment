@@ -23,10 +23,6 @@ export default function MenuSection() {
           className="md:invisible"
         >
           {dropdownVisibility ? (
-            <div className="font-bold bg-blue text-white p-2 rounded-lg shadow-md">
-              menu
-            </div>
-          ) : (
             <>
               <div className="font-bold mb-2 p-2 md:-mb-32">menu</div>
               {menu &&
@@ -35,12 +31,16 @@ export default function MenuSection() {
                     key={index}
                     onClick={navigatePage}
                     className="p-2 w-44 font-normal text-center uppercase text-md
-                  hover:bg-blue hover:text-white ease-out rounded-md"
+    hover:bg-blue hover:text-white ease-out rounded-md"
                   >
                     {el}
                   </div>
                 ))}
             </>
+          ) : (
+            <div className="font-bold bg-blue text-white p-2 rounded-lg shadow-md">
+              menu
+            </div>
           )}
         </button>
       </div>
