@@ -17,7 +17,12 @@ module.exports = {
         device: "#D7200F",
       },
       height: {
+        dheight: "26rem",
+        eheight: "27rem",
         fheight: "28rem",
+      },
+      top: {
+        ctop: "19rem",
       },
     },
   },

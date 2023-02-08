@@ -16,7 +16,7 @@ export default function ContactList({
 
   return (
     <>
-      <div className="mx-4 mt-4 items-center flex justify-between">
+      <div className="mx-10 mt-4 items-center flex justify-between">
         <div>
           <div className="text-sm text-blue font-bold">
             {first}, {last}

@@ -23,12 +23,12 @@ export default function MenuSection() {
           className="md:invisible"
         >
           {dropdownVisibility ? (
-            <div className="font-bold bg-blue text-white p-2 rounded-lg shadow-lg">
+            <div className="font-bold bg-blue text-white p-2 rounded-lg shadow-md">
               menu
             </div>
           ) : (
             <>
-              <div className="font-bold mb-2 p-2">menu</div>
+              <div className="font-bold mb-2 p-2 md:-mb-32">menu</div>
               {menu &&
                 menu.map((el, index) => (
                   <div
@@ -44,7 +44,8 @@ export default function MenuSection() {
           )}
         </button>
       </div>
-      <div className="md:-mt-36">
+
+      <div>
         {menu &&
           menu.map((el, index) => (
             <div
@@ -53,7 +54,8 @@ export default function MenuSection() {
               className="p-2 font-normal text-center uppercase text-sm
              hover:bg-blue hover:text-white ease-out rounded-md
              invisible md:visible
-              md:text-left md:mx-10 md:w-48 md:text-lg"
+              md:text-left md:mx-10 md:w-48 md:text-lg
+              lg:ml-12"
             >
               {el}
             </div>
