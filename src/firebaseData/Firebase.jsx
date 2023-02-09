@@ -13,9 +13,9 @@ export default function Firebase() {
       <div>
         <section>
           <p
-            className="text-4xl font-extrabold text-center -mt-16 md:mt-12
+            className="text-4xl font-extrabold text-center -mt-16
         md:hover:translate-x-6 ease-out duration-700 transition-all
-        md:text-left"
+        md:text-left md:mt-0"
           >
             Fire Base
           </p>

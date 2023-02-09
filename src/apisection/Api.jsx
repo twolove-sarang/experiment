@@ -8,15 +8,19 @@ export default function API() {
   return (
     <section>
       <p
-        className="text-4xl font-extrabold text-center -mt-16 md:mt-12
+        className="text-4xl font-extrabold text-center -mt-16
         md:hover:translate-x-6 ease-out duration-700 transition-all
-        md:text-left"
+        md:text-left md:mt-0"
       >
         API
       </p>
-      <div className="mt-2 text-center md:text-left">
-        ✅<br /> "너로 정했다!" 포켓몬 API를 활용해 <br />
+      <div className="mt-2 text-center md:text-left md:invisible md:absolute">
+        ✅<br /> "너로 정했다!" 포켓몬 API를 활용해
+        <br />
         최고의 포켓몬 잡기
+      </div>
+      <div className="invisible md:visible md:mt-4">
+        ✅"너로 정했다!" 포켓몬 API를 활용해 최고의 포켓몬 잡기
       </div>
       <QueryClientProvider client={queryClient}>
         <PokeContextProvider value>

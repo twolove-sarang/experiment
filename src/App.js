@@ -11,17 +11,8 @@ function App() {
 
   return (
     <>
-      <Navbar />
       <QueryClientProvider client={queryClient}>
-        <div className="md:flex items-start">
-          <div className="md:flex-col items-start">
-            <MenuSection />
-          </div>
-          <UserContextProvider value>
-            <Outlet />
-            {/* <ReactQueryDevtools initialIsOpen={true} /> */}
-          </UserContextProvider>
-        </div>
+        <MenuSection />
       </QueryClientProvider>
     </>
   );
