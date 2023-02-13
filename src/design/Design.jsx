@@ -1,13 +1,13 @@
 import React from "react";
+import OutletHeader from "../component/OutletHeader";
 
-export default function CSS() {
+export default function Design() {
   return (
-    <div>
-      <div className="text-4xl font-extrabold transition-all hover:translate-x-6 ease-out duration-700 inline-block">
-        CSS
-      </div>
-      <div className="mt-2">✅ 다양한 CSS기능 탐구</div>
-      <p>준비중입니다 😗</p>
-    </div>
+    <>
+      <OutletHeader
+        menuName="Hex Color Palette"
+        dialogue={`✅컬러로 고민하는 디자이너를 위한 페이지`}
+      />
+    </>
   );
 }

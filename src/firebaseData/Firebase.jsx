@@ -4,6 +4,7 @@ import OutComeSection from "./firebaseComponent/OutComeSection";
 import { useUserContext } from "./firebaseUserContext/userContext";
 import { AiOutlineArrowDown } from "react-icons/ai";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import OutletHeader from "../component/OutletHeader";
 
 export default function Firebase() {
   const { user, login, logout } = useUserContext();
@@ -11,18 +12,10 @@ export default function Firebase() {
   return (
     <div>
       <div>
-        <section>
-          <p
-            className="text-4xl font-extrabold text-center -mt-16
-        md:hover:translate-x-6 ease-out duration-700 transition-all
-        md:text-left md:mt-0"
-          >
-            Fire Base
-          </p>
-          <div className="mt-2 text-center md:text-left">
-            ✅ 파이어베이스를 활용한 연락처 저장기능
-          </div>
-        </section>
+        <OutletHeader
+          menuName="firebase"
+          dialogue="✅ 파이어베이스를 활용한 연락처 저장기능"
+        />
         {!user && (
           <>
             <div className="my-4 text-center md:invisible">
