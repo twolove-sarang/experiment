@@ -10,7 +10,7 @@ export default function API() {
     <section>
       <OutletHeader
         menuName="API"
-        dialogue={`✅"너로 정했다!" 포켓몬 API를 활용해 최고의 포켓몬 잡기`}
+        dialogue={`✅ "너로 정했다!" 포켓몬 API를 활용해 최고의 포켓몬 잡기`}
       />
       <QueryClientProvider client={queryClient}>
         <PokeContextProvider value>
