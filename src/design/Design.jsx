@@ -1,9 +1,7 @@
 import React from "react";
 import OutletHeader from "../component/OutletHeader";
 import ColorChange from "./component/ColorChange";
-import { AiFillGithub } from "react-icons/ai";
-import { FaBloggerB } from "react-icons/fa";
-import { FaReact } from "react-icons/fa";
+import GoToPersonalPage from "../component/GoToPersonalPage";
 
 export default function Design() {
   return (
@@ -12,43 +10,11 @@ export default function Design() {
         menuName="Hex Color Palette"
         dialogue={`✅ 컬러로 고민하는 디자이너를 위한 페이지`}
       />
-      <div className="flex-col mt-8 w-96 mx-auto md:mx-0">
-        <div className="hover:font-bold flex justify-center items-center gap-2  border p-4 rounded-t-lg hover:bg-slate-400 border-b-0">
-          <FaReact />
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://csscolorvariation.netlify.app/"
-            className="text-lg"
-          >
-            웹페이지 바로가기
-          </a>
-        </div>
-
-        <div className="hover:font-bold flex justify-center items-center gap-2  border p-4 hover:bg-slate-400 border-b-0">
-          <FaBloggerB />
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://csscolorvariation.netlify.app/"
-            className="text-lg"
-          >
-            블로그 바로가기
-          </a>
-        </div>
-
-        <div className="hover:font-bold flex justify-center items-center gap-2  border p-4 rounded-b-lg hover:bg-slate-400">
-          <AiFillGithub />
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://github.com/twolove-sarang/cssColor-ariation"
-            className="text-lg"
-          >
-            깃허브 바로가기
-          </a>
-        </div>
-      </div>
+      <GoToPersonalPage
+        web="https://csscolorvariation.netlify.app/"
+        blog="https://velog.io/@twolove-sarang/%EB%9E%9C%EB%8D%A4-%EC%83%89-%EC%B6%94%EC%B6%9C%EB%A1%9C-css-%EC%BB%AC%EB%9F%AC%EA%B0%80%EC%9D%B4%EB%93%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0-07"
+        github="https://github.com/twolove-sarang/cssColor-ariation"
+      />
 
       <div className="lg:flex gap-12 md:items-start">
         <div className="mt-10">
@@ -57,7 +23,6 @@ export default function Design() {
           </div>
           <ColorChange />
         </div>
-
         <div className="md:mt-10">
           <div className="text-center text-lg font-bold">웹페이지 view</div>
           <div className="w-96 mx-auto">

@@ -4,7 +4,7 @@ import Category from "./Category";
 import Navbar from "./Navbar";
 import OutletSection from "./OutletSection";
 
-const menu = ["firebase", "api", "design"];
+const menu = ["firebase", "api", "design", "withwith"];
 export default function MenuSection() {
   const navigate = useNavigate();
   const navigatePage = (e) => {
@@ -31,7 +31,7 @@ export default function MenuSection() {
                       key={index}
                       onClick={navigatePage}
                       className="p-2 font-normal text-right uppercase text-md w-36 cursor-pointer
-                      hover:font-bold duration-150 ease-out
+                      hover:font-bold
                       md:absolute"
                     >
                       {el}

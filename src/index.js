@@ -10,6 +10,7 @@ import MainPage from "./Page/MainPage";
 import Firebase from "./firebaseData/Firebase";
 import Design from "./design/Design";
 import Api from "./apisection/Api";
+import Withwith from "./withwith/Withwith";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: "/menu/firebase", element: <Firebase /> },
       { path: "/menu/design", element: <Design /> },
       { path: "/menu/api", element: <Api /> },
+      { path: "/menu/withwith", element: <Withwith /> },
     ],
   },
 ]);
