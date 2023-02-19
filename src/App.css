@@ -8,9 +8,6 @@
 #silhouette {
   -webkit-filter: grayscale(100%) brightness(0);
   filter: grayscale(100%) brightness(0);
-
-  margin: 32px auto;
-  width: 14rem;
 }
 
 #font_galmuri {

@@ -24,7 +24,7 @@ export default function EnterSection() {
 
   return (
     <>
-      <div>
+      <div className="p-6">
         <form onSubmit={handleSubmit}>
           <label className="flex justify-between">
             <span className="w-36 p-2 my-2 basis-3/12">Name</span>

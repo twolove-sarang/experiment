@@ -25,19 +25,22 @@ export default function OutComeSection() {
   const { user } = useUserContext();
 
   return (
-    <div className="bg-grey w-96 p-4 rounded-3xl h-80 overflow-scroll">
-      <div className="font-extrabold text-xl my-2 mx-4">Contact</div>
-      {user &&
-        contact &&
-        contactValue.map((contact, id) => {
-          return <ContactList contact={contact} key={id} />;
-        })}
-
-      {contactValue.length === 0 && (
-        <p className="ml-4">⬅️ 정보를 입력해 주세요</p>
+    <div className="bg-grey mx-8 mb-10 rounded-3xl h-80  lg:h-96 lg:w-96 lg:ml-0 lg:mt-10 overflow-scroll">
+      <div className="font-extrabold text-xl text-center my-5">Contact</div>
+      {user ? (
+        contactValue.length === 0 ? (
+          <div className="flex items-center justify-center">
+            <p> 정보를 입력해 주세요</p>
+          </div>
+        ) : (
+          contact &&
+          contactValue.map((contact, id) => {
+            return <ContactList contact={contact} key={id} />;
+          })
+        )
+      ) : (
+        <p className="ml-4 text-center">로그인이 필요합니다 🤩</p>
       )}
-
-      {!user && <p className="ml-4">로그인이 필요합니다 🤩</p>}
     </div>
   );
 }
