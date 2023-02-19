@@ -9,9 +9,7 @@ export default function Navbar() {
         sm:text-3xl 
         md:text-4xl md:text-left md:ml-12 md:mb-10
         lg:text-5xl lg:ml-16 lg:my-20
-        xl:text-6xl xl:my-24
-        transition ease-in-out duration-300
-        hover:scale-105  hover:cursor-pointer"
+        xl:text-6xl"
       >
         Experiment
       </div>

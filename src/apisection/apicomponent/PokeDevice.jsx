@@ -11,17 +11,17 @@ export default function PokeDevice({
 }) {
   return (
     <section className="relative">
-      <div className="flex items-end invisible lg:visible absolute">
-        <LeftDevice catchPoke={catchPoke} />
+      <div className="invisible lg:visible flex items-end absolute">
+        {/* <LeftDevice catchPoke={catchPoke} />
         <RightDevice
           monster={monster}
           previousPoke={previousPoke}
           nextPoke={nextPoke}
-        />
+        /> */}
       </div>
 
       <div
-        className="lg:invisible lg:absolute mt-4 flex justify-center mb-10
+        className="lg:absolute flex justify-center mb-10 mt-4
       md:mt-0"
       >
         <SmallDevice

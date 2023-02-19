@@ -18,26 +18,12 @@ export default function Firebase() {
         />
         {!user && (
           <>
-            <div className="my-4 text-center md:invisible">
-              <div className="text-center">
+            <div className="my-4 text-center md:flex md:gap-2">
+              <div className="text-center md:flex md:items-center">
                 <p className="font-bold">로그인이 필요합니다</p>
-                <div className="w-4 mx-auto my-2">
+                <div className="w-4 mx-auto my-2 md:invisible">
                   <AiOutlineArrowDown />
                 </div>
-              </div>
-
-              <button
-                onClick={() => login()}
-                className="bg-blue p-2 rounded-lg text-white font-bold transition-all hover:scale-105"
-              >
-                구글 로그인
-              </button>
-            </div>
-
-            <div className="my-4 text-center invisible md:visible md:-mt-28 flex items-center gap-4">
-              <div className="flex items-center gap-4">
-                <p className="font-bold">로그인이 필요합니다</p>
-                <AiOutlineArrowRight />
               </div>
 
               <button
@@ -51,32 +37,15 @@ export default function Firebase() {
         )}
         {user && (
           <>
-            <div className="my-4 text-center md:invisible">
-              <div className="text-center">
+            <div className="my-4 text-center md:flex md:items-center">
+              <div className="text-center md:flex md:gap-2 md:items-center">
                 <p className="font-bold">
                   안녕하세요 {user && user.displayName}님
                 </p>
                 <p>로그아웃은 여깁니다.</p>
-                <div className="w-4 mx-auto my-2">
+                <div className="w-4 mx-auto my-2 md:invisible">
                   <AiOutlineArrowDown />
                 </div>
-              </div>
-
-              <button
-                onClick={() => logout()}
-                className="bg-blue p-2 rounded-lg text-white font-bold transition-all hover:scale-105"
-              >
-                로그아웃
-              </button>
-            </div>
-
-            <div className="my-4 text-center invisible md:visible md:-mt-32 flex items-center gap-4">
-              <div className="flex items-center gap-4">
-                <p className="font-bold">
-                  안녕하세요 {user && user.displayName}님
-                </p>
-                <p>로그아웃은 여깁니다.</p>
-                <AiOutlineArrowRight />
               </div>
 
               <button

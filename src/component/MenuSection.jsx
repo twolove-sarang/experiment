@@ -3,60 +3,72 @@ import { useNavigate } from "react-router-dom";
 import Category from "./Category";
 import Navbar from "./Navbar";
 import OutletSection from "./OutletSection";
+import { FiMenu } from "react-icons/fi";
+import { HiChevronDown } from "react-icons/hi";
 
 const menu = ["firebase", "api", "design", "withwith"];
 export default function MenuSection() {
+  const [dropdownVisibility, setDropdownVisibility] = useState(false);
   const navigate = useNavigate();
   const navigatePage = (e) => {
     navigate(`/menu/${e.target.textContent}`);
+    setDropdownVisibility((prev) => !prev);
   };
 
-  const [dropdownVisibility, setDropdownVisibility] = useState(false);
-
   return (
-    <>
-      <div className="mx-6">
-        <Navbar />
-        <div className="md:flex md:items-start">
+    <div className="relative">
+      <div className="md:invisible absolute w-full flex-col">
+        <div>
           {dropdownVisibility ? (
-            <div className="md:invisible relative">
-              <button
-                onClick={() => setDropdownVisibility(!dropdownVisibility)}
-                className="w-6 h-1 rounded-full bg-black mb-4 m-2 absolute right-4 -top-12"
-              ></button>
-              <div className="absolute right-4 -top-4 ease-out transition">
+            <>
+              <div className="flex justify-between mx-10 items-start">
+                <Navbar />
+                <button
+                  onClick={() => setDropdownVisibility(!dropdownVisibility)}
+                  className="mt-8"
+                >
+                  <HiChevronDown />
+                </button>
+              </div>
+
+              <div className="bg-white absolute w-full h-screen z-10">
                 {menu &&
                   menu.map((el, index) => (
                     <div
                       key={index}
                       onClick={navigatePage}
-                      className="p-2 font-normal text-right uppercase text-md w-36 cursor-pointer
-                      hover:font-bold
-                      md:absolute"
+                      className="uppercase cursor-pointer hover:font-bold text-center my-2"
                     >
                       {el}
                     </div>
                   ))}
               </div>
-              <div className="md:-mt-6">
-                <Category menu={menu} navigatePage={navigatePage} />
-              </div>
-            </div>
+            </>
           ) : (
-            <div className="md:invisible">
+            <div className="flex justify-between mx-10">
+              <Navbar />
               <button
                 onClick={() => setDropdownVisibility(!dropdownVisibility)}
-                className="w-6 h-1 rounded-full bg-blue mb-4 m-2 absolute right-10 top-9"
-              ></button>
-              <div className="md:-mt-6">
-                <Category menu={menu} navigatePage={navigatePage} />
-              </div>
+              >
+                <FiMenu />
+              </button>
             </div>
           )}
+          <div className="mt-24">
+            <OutletSection />
+          </div>
+        </div>
+      </div>
 
+      <div className="invisible md:visible md:flex-col absolute">
+        <Navbar />
+        <div className="md:flex">
+          <div>
+            <Category menu={menu} navigatePage={navigatePage} />
+          </div>
           <OutletSection />
         </div>
       </div>
-    </>
+    </div>
   );
 }
