@@ -1,6 +1,4 @@
 import React from "react";
-import { AiOutlineArrowUp } from "react-icons/ai";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 
 export default function MainSection() {
   return (

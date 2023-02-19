@@ -3,7 +3,6 @@ import EnterSection from "./firebaseComponent/EnterSection";
 import OutComeSection from "./firebaseComponent/OutComeSection";
 import { useUserContext } from "./firebaseUserContext/userContext";
 import { AiOutlineArrowDown } from "react-icons/ai";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import OutletHeader from "../component/OutletHeader";
 
 export default function Firebase() {

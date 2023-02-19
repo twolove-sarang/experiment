@@ -1,6 +1,6 @@
 import React from "react";
-import LeftDevice from "./LeftDevice";
-import RightDevice from "./RightDevice";
+// import LeftDevice from "./LeftDevice";
+// import RightDevice from "./RightDevice";
 import SmallDevice from "./SmallDevice";
 
 export default function PokeDevice({
